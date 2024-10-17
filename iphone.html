@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奶茶随机选择器</title>
+</head>
+<body>
+
+    <h1>奶茶随机选择器</h1>
+    <button onclick="selectRandomTea()">选择奶茶</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function selectRandomTea() {
+            console.log("选择按钮被点击");
+            // 奶茶品牌和种类数据
+            const milkTeaOptions = {
+                '喜茶': ['芝士奶盖茶', '水果茶', '纯茶'],
+                '奈雪の茶': ['霸气橙子', '草莓芝芝', '桃子乌龙茶'],
+                '一点点': ['珍珠奶茶', '红豆奶茶', '抹茶奶茶'],
+                'CoCo': ['三兄弟', '奶霜绿茶', '椰果奶茶']
+            };
+
+            // 随机选择品牌
+            const brands = Object.keys(milkTeaOptions);
+            const randomBrand = brands[Math.floor(Math.random() * brands.length)];
+
+            // 随机选择该品牌的奶茶种类
+            const teas = milkTeaOptions[randomBrand];
+            const randomTea = teas[Math.floor(Math.random() * teas.length)];
+
+            // 显示结果
+            document.getElementById('result').innerText = `今天的奶茶是：${randomBrand} 的 ${randomTea}`;
+        }
+    </script>
+
+</body>
+</html>
