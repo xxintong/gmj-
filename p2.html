@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选品牌抽奶茶</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #f0f0f0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar li {
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidebar li.active {
+            background-color: white;
+            color: #333;
+        }
+        .sidebar li:hover {
+            background-color: #ddd;
+        }
+        .content {
+            width: 80%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .content h2 {
+            margin-top: 0;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff9800;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #d3d3d3;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <ul>
+            <li onclick="selectBrand('喜茶')" class="active">喜茶</li>
+            <li onclick="selectBrand('霸王茶姬')">霸王茶姬</li>
+            <li onclick="selectBrand('奈雪の茶')">奈雪の茶</li>
+            <li onclick="selectBrand('一点点')">一点点</li>
+            <li onclick="selectBrand('CoCo')">CoCo</li>
+            <li onclick="selectBrand('沪上阿姨')">沪上阿姨</li>
+            <li onclick="selectBrand('蜜雪冰城')">蜜雪冰城</li>
+            <li onclick="selectBrand('星巴克')">星巴克</li>
+            <li onclick="selectBrand('瑞幸咖啡')">瑞幸咖啡</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2 id="brandTitle">喜茶</h2>
+        <button onclick="drawMilkTea()">随机抽奶茶</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const milkTeaOptions = {
+            '喜茶': ['纤体瓶系列', '多肉桃李', '鸭喜香轻柠茶'],
+            '霸王茶姬': ['金乌扶摇', '扶摇起', '桂馥兰香'],
+            '奈雪の茶': ['霸气橙子', '草莓芝芝', '桃子乌龙茶'],
+            '一点点': ['珍珠奶茶', '红豆奶茶', '抹茶奶茶'],
+            'CoCo': ['三兄弟', '奶霜绿茶', '椰果奶茶'],
+            '沪上阿姨': ['厚芋泥生打椰', '厚芋泥桃胶大满贯', '荔枝冰酿'],
+            '蜜雪冰城': ['东方乌龙轻乳茶', '东方乌龙奶盖茶', '东方乌龙茶'],
+            '星巴克': ['清柠玛奇朵', '椰椰玛奇朵', '椰子丝绒燕麦拿铁'],
+            '瑞幸咖啡': ['生椰锡兰轻乳茶', '轻轻茉莉', '轻轻乌龙']
+        };
+        let currentBrand = '喜茶';
+
+        function selectBrand(brand) {
+            currentBrand = brand;
+            document.getElementById('brandTitle').innerText = brand;
+            const items = document.querySelectorAll('.sidebar li');
+            items.forEach(item => {
+                item.classList.remove('active');
+                if (item.innerText === brand) {
+                    item.classList.add('active');
+                }
+            });
+            document.getElementById('result').innerText = '';
+        }
+
+        function drawMilkTea() {
+            const teas = milkTeaOptions[currentBrand];
+            const randomTea = teas[Math.floor(Math.random() * teas.length)];
+            document.getElementById('result').innerText = `随机抽到的奶茶是：${randomTea}`;
+        }
+
+        window.onload = () => {
+            selectBrand('喜茶');
+        };
+    </script>
+
+</body>
+</html>

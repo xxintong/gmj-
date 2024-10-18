@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直接抽奶茶</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d3d3d3;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #c0c0c0;
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>直接抽奶茶</h1>
+    <button onclick="drawRandomMilkTea()">抽奶茶</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        const milkTeaOptions = {
+            '喜茶': ['纤体瓶系列', '多肉桃李', '鸭喜香轻柠茶'],
+            '霸王茶姬': ['金乌扶摇', '扶摇起', '桂馥兰香'],
+            '奈雪の茶': ['霸气橙子', '草莓芝芝', '桃子乌龙茶'],
+            '一点点': ['珍珠奶茶', '红豆奶茶', '抹茶奶茶'],
+            'CoCo': ['三兄弟', '奶霜绿茶', '椰果奶茶'],
+            '沪上阿姨': ['厚芋泥生打椰', '厚芋泥桃胶大满贯', '荔枝冰酿'],
+            '蜜雪冰城': ['东方乌龙轻乳茶', '东方乌龙奶盖茶', '东方乌龙茶'],
+            '星巴克': ['清柠玛奇朵', '椰椰玛奇朵', '椰子丝绒燕麦拿铁'],
+            '瑞幸咖啡': ['生椰锡兰轻乳茶', '轻轻茉莉', '轻轻乌龙']
+        };
+
+        function drawRandomMilkTea() {
+            const allBrands = Object.keys(milkTeaOptions);
+            const randomBrand = allBrands[Math.floor(Math.random() * allBrands.length)];
+            const teas = milkTeaOptions[randomBrand];
+            const randomTea = teas[Math.floor(Math.random() * teas.length)];
+            document.getElementById('result').innerText = `随机抽到的奶茶是：${randomBrand} 的 ${randomTea}`;
+        }
+    </script>
+
+</body>
+</html>

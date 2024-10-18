@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>看奶茶</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #f0f0f0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar li {
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidebar li.active {
+            background-color: white;
+            color: #333;
+        }
+        .sidebar li:hover {
+            background-color: #ddd;
+        }
+        .content {
+            width: 80%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .content h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <ul>
+            <li onclick="showMilkTea('喜茶')" class="active">喜茶</li>
+            <li onclick="showMilkTea('霸王茶姬')">霸王茶姬</li>
+            <li onclick="showMilkTea('奈雪の茶')">奈雪の茶</li>
+            <li onclick="showMilkTea('一点点')">一点点</li>
+            <li onclick="showMilkTea('CoCo')">CoCo</li>
+            <li onclick="showMilkTea('沪上阿姨')">沪上阿姨</li>
+            <li onclick="showMilkTea('蜜雪冰城')">蜜雪冰城</li>
+            <li onclick="showMilkTea('星巴克')">星巴克</li>
+            <li onclick="showMilkTea('瑞幸咖啡')">瑞幸咖啡</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2 id="brandTitle">喜茶</h2>
+        <ul id="milkTeaList">
+            <!-- 奶茶种类会动态添加到这里 -->
+        </ul>
+    </div>
+
+    <script>
+        const milkTeaOptions = {
+            '喜茶': ['纤体瓶系列', '多肉桃李', '鸭喜香轻柠茶'],
+            '霸王茶姬': ['金乌扶摇', '扶摇起', '桂馥兰香'],
+            '奈雪の茶': ['霸气橙子', '草莓芝芝', '桃子乌龙茶'],
+            '一点点': ['珍珠奶茶', '红豆奶茶', '抹茶奶茶'],
+            'CoCo': ['三兄弟', '奶霜绿茶', '椰果奶茶'],
+            '沪上阿姨': ['厚芋泥生打椰', '厚芋泥桃胶大满贯', '荔枝冰酿'],
+            '蜜雪冰城': ['东方乌龙轻乳茶', '东方乌龙奶盖茶', '东方乌龙茶'],
+            '星巴克': ['清柠玛奇朵', '椰椰玛奇朵', '椰子丝绒燕麦拿铁'],
+            '瑞幸咖啡': ['生椰锡兰轻乳茶', '轻轻茉莉', '轻轻乌龙']
+        };
+
+        function showMilkTea(brand) {
+            // 更新左侧导航栏的选中状态
+            const items = document.querySelectorAll('.sidebar li');
+            items.forEach(item => {
+                item.classList.remove('active');
+                if (item.innerText === brand) {
+                    item.classList.add('active');
+                }
+            });
+
+            // 更新右侧内容
+            document.getElementById('brandTitle').innerText = brand;
+            const list = document.getElementById('milkTeaList');
+            list.innerHTML = ''; // 清空之前的列表
+
+            // 添加对应品牌的奶茶种类
+            milkTeaOptions[brand].forEach(tea => {
+                const li = document.createElement('li');
+                li.innerText = tea;
+                list.appendChild(li);
+            });
+        }
+
+        // 初始化，显示第一个品牌的奶茶种类
+        window.onload = () => {
+            showMilkTea('喜茶');
+        };
+    </script>
+
+</body>
+</html>
