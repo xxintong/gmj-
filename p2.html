@@ -6,58 +6,59 @@
     <title>选品牌抽奶茶</title>
     <style>
         body {
-            display: flex;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+                display: flex;
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                }
         .sidebar {
-            width: 20%;
-            background-color: #f0f0f0;
-            height: 100vh;
-            overflow-y: auto;
-        }
+                width: 30%; /* 将宽度调整为30% */
+                background-color: #f0f0f0;
+                height: 100vh;
+                overflow-y: auto;
+                }
         .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
+                    list-style-type: none;
+                    padding: 0;
+                }
         .sidebar li {
-            padding: 15px;
-            cursor: pointer;
-            border-bottom: 1px solid #ddd;
-        }
+                    padding: 20px; /* 增加列表项的内边距 */
+                    font-size: 18px; /* 增加字体大小 */
+                    cursor: pointer;
+                    border-bottom: 1px solid #ddd;
+                }
         .sidebar li.active {
-            background-color: white;
-            color: #333;
-        }
+                    background-color: white;
+                    color: #333;
+                }
         .sidebar li:hover {
-            background-color: #ddd;
-        }
+                    background-color: #ddd;
+                }
         .content {
-            width: 80%;
-            padding: 20px;
-            background-color: #fff;
-        }
+                    width: 70%; /* 将内容区域宽度调整为70% */
+                    padding: 20px;
+                    background-color: #fff;
+                }
         .content h2 {
-            margin-top: 0;
-        }
+                    margin-top: 0;
+                }
         .draw-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            background-color: #d3d3d3;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .draw-button:hover {
-            background-color: #c0c0c0;
-        }
+                    margin-top: 20px;
+                    padding: 15px 30px;
+                    font-size: 18px;
+                    border: none;
+                    background-color: #d3d3d3;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+         .draw-button:hover {
+                    background-color: #c0c0c0;
+                }
         .result {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
+                    margin-top: 20px;
+                    font-size: 18px;
+                    color: #333;
+                }
 		.draw-button {
 		            background-color: #d3d3d3; /* 与返回首页相同的灰色背景 */
 		            color: #4682B4; /* 字体颜色为深蓝色 */
@@ -69,7 +70,7 @@
 		        }
 		.draw-button:hover {
 		            background-color: #c0c0c0; /* 鼠标悬停时背景变浅灰色 */
-		        }
+		}
     </style>
 </head>
 <body>
@@ -86,17 +87,17 @@
             <li onclick="selectBrand('蜜雪冰城', this)">蜜雪冰城</li>
             <li onclick="selectBrand('星巴克', this)">星巴克</li>
             <li onclick="selectBrand('瑞幸咖啡', this)">瑞幸咖啡</li>
-			<li onclick="showMilkTea('古茗', this)">古茗</li>
-			<li onclick="showMilkTea('茉莉奶白', this)">茉莉奶白</li>
-			<li onclick="showMilkTea('茶颜悦色', this)">茶颜悦色</li>
-			<li onclick="showMilkTea('茶百道', this)">茶百道</li>
-			<li onclick="showMilkTea('乐乐茶', this)">乐乐茶</li>
-			<li onclick="showMilkTea('百分茶', this)">百分茶</li>
-			<li onclick="showMilkTea('SnackPaper', this)">SnackPaper</li>
-			<li onclick="showMilkTea('爷爷不泡茶', this)">爷爷不泡茶</li>
-			<li onclick="showMilkTea('7分甜', this)">7分甜</li>
-			<li onclick="showMilkTea('马伍旺饮料厂', this)">马伍旺饮料厂</li>
-			<li onclick="showMilkTea('贡茶', this)">贡茶</li>
+			<li onclick="selectBrand('古茗', this)">古茗</li>
+			<li onclick="selectBrand('茉莉奶白', this)">茉莉奶白</li>
+			<li onclick="selectBrand('茶颜悦色', this)">茶颜悦色</li>
+			<li onclick="selectBrand('茶百道', this)">茶百道</li>
+			<li onclick="selectBrand('乐乐茶', this)">乐乐茶</li>
+			<li onclick="selectBrand('百分茶', this)">百分茶</li>
+			<li onclick="selectBrand('SnackPaper', this)">SnackPaper</li>
+			<li onclick="selectBrand('爷爷不泡茶', this)">爷爷不泡茶</li>
+			<li onclick="selectBrand('7分甜', this)">7分甜</li>
+			<li onclick="selectBrand('马伍旺饮料厂', this)">马伍旺饮料厂</li>
+			<li onclick="selectBrand('贡茶', this)">贡茶</li>
         </ul>
     </div>
 
@@ -220,14 +221,21 @@
         }
 
         function drawMilkTea() {
-            const teas = milkTeaOptions[currentBrand];
-            const randomTea = teas[Math.floor(Math.random() * teas.length)];
-            document.getElementById('result').innerText = `gmj抽到的是：${randomTea}`;
-        }
-
-        window.onload = () => {
-            selectBrand('喜茶', document.querySelector('.sidebar li:nth-child(2)'));
-        };
+                    const teas = milkTeaOptions[currentBrand];
+                    if (teas && teas.length > 0) {
+                        const randomTea = teas[Math.floor(Math.random() * teas.length)];
+                        document.getElementById('result').innerText = `gmj抽到的是：${randomTea}`;
+                    } else {
+                        document.getElementById('result').innerText = '此品牌无奶茶选项。';
+                    }
+                }
+        
+                window.onload = () => {
+                    const firstBrandElement = document.querySelector('.sidebar li:nth-child(2)');
+                    if (firstBrandElement) {
+                        selectBrand('喜茶', firstBrandElement);
+                    }
+                };
     </script>
 
 </body>
