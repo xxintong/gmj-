@@ -6,41 +6,42 @@
     <title>奶茶种类</title>
     <style>
         body {
-            display: flex;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        .sidebar {
-            width: 20%;
-            background-color: #f0f0f0;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar li {
-            padding: 15px;
-            cursor: pointer;
-            border-bottom: 1px solid #ddd;
-        }
-        .sidebar li.active {
-            background-color: white;
-            color: #333;
-        }
-        .sidebar li:hover {
-            background-color: #ddd;
-        }
-        .content {
-            width: 80%;
-            padding: 20px;
-            background-color: #fff;
-        }
-        .content h2 {
-            margin-top: 0;
-        }
+                    display: flex;
+                    margin: 0;
+                    padding: 0;
+                    font-family: Arial, sans-serif;
+                }
+                .sidebar {
+                    width: 30%; /* 将宽度调整为30% */
+                    background-color: #f0f0f0;
+                    height: 100vh;
+                    overflow-y: auto;
+                }
+                .sidebar ul {
+                    list-style-type: none;
+                    padding: 0;
+                }
+                .sidebar li {
+                    padding: 20px; /* 增加列表项的内边距 */
+                    font-size: 18px; /* 增加字体大小 */
+                    cursor: pointer;
+                    border-bottom: 1px solid #ddd;
+                }
+                .sidebar li.active {
+                    background-color: white;
+                    color: #333;
+                }
+                .sidebar li:hover {
+                    background-color: #ddd;
+                }
+                .content {
+                    width: 70%; /* 将内容区域宽度调整为70% */
+                    padding: 20px;
+                    background-color: #fff;
+                }
+                .content h2 {
+                    margin-top: 0;
+                }
     </style>
 </head>
 <body>
