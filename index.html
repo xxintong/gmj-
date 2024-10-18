@@ -3,36 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gmj不许喝奶茶了！</title>
+    <title>奶茶随机选择器封面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        /* 左侧导航栏样式 */
+        .sidebar {
+            width: 20%;
+            background-color: #fff3e0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #333;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar .nav-item {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .sidebar .nav-item:hover {
+            background-color: #ffe0b2;
+        }
+        .sidebar .active {
+            background-color: #ffcc80; /* 选中的部分背景色 */
+        }
+        /* 右侧内容显示样式 */
+        .content {
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>gmj今天喝什么</h1>
-    <button onclick="selectRandomTea()">选择奶茶</button>
+    <div class="sidebar">
+        <h2>功能选择</h2>
+        <div class="nav-item" onclick="viewMilkTea(this)">看奶茶</div>
+        <div class="nav-item" onclick="chooseBrand(this)">选品牌抽奶茶</div>
+        <div class="nav-item" onclick="randomMilkTea(this)">直接抽奶茶</div>
+    </div>
 
-    <div class="result" id="result"></div>
+    <div class="content">
+        <h2>结果显示</h2>
+        <div id="result"></div>
+    </div>
 
     <script>
-        function selectRandomTea() {
-            console.log("选择按钮被点击");
-            // 奶茶品牌和种类数据
+        // 设置激活状态的函数
+        function setActive(element) {
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // 看奶茶功能
+        function viewMilkTea(element) {
+            setActive(element);
             const milkTeaOptions = {
-                '喜茶': ['纤体瓶系列', '多肉桃李', '鸭喜香轻柠茶', '绿妍轻柠茶', '多肉葡萄', '轻芝多肉葡萄', '有喜柿椰', '喜柿多多', '椰椰芒芒', '芒芒甘露', '多肉莓莓桃', '多肉芒芒', '小奶沫系列', '芝芝绿妍茶后', '纯绿妍茶后', '双城•桂花酿', '金凤茶王™（焙火香）', '抹茉', '浓抹绿妍', '红莱头美颜瓶', '芝芝抹茶', '水牛乳双拼抹茶', '抹茶波波冰', '抹茶·水牛乳', '烤黑糖波波真乳茶', '黑糖波波真乳茶', '水牛乳双拼波波', '烤黑糖波波牛乳', '黑糖波波真牛乳', '焙茶波波冰', '波波真乳茶', '芝芝多肉葡萄', '芝芝芒芒'],
-                '霸王茶姬': ['金乌扶摇', '扶摇起', '桂馥兰香', '伯牙绝弦', '青青糯山', '万里木兰', '花田乌龙', '山野栀子', '去云南玫瑰普洱', '白雾红尘', '万山红金丝小种', '七里香', '栀香水光柠檬茶', '琥珀光', '千峰翠', '木兰辞', '野栀子', '花田坞', '云中绿', '酌红袍', '桂子飘飘', '关山木兰', '春日桃桃', '千山雪金丝小种'],
-                '奈雪の茶': ['霸气橙子', '草莓芝芝', '桃子乌龙茶'],
-                '一点点': ['珍珠奶茶', '红豆奶茶', '抹茶奶茶'],
-                'CoCo': ['三兄弟', '奶霜绿茶', '椰果奶茶'],
-				};
-            // 随机选择品牌
-            const brands = Object.keys(milkTeaOptions);
-            const randomBrand = brands[Math.floor(Math.random() * brands.length)];
+                '喜茶': ['纤体瓶系列', '多肉桃李', '鸭喜香轻柠茶'],
+                '霸王茶姬': ['金乌扶摇', '扶摇起', '桂馥兰香'],
+                '奈雪の茶': ['霸气橙子', '草莓芝芝', '桃子乌龙茶']
+            };
+            let result = "所有奶茶品牌及种类：<br>";
+            for (let brand in milkTeaOptions) {
+                result += `<strong>${brand}</strong>: ${milkTeaOptions[brand].join(', ')}<br>`;
+            }
+            document.getElementById('result').innerHTML = result;
+        }
 
-            // 随机选择该品牌的奶茶种类
-            const teas = milkTeaOptions[randomBrand];
-            const randomTea = teas[Math.floor(Math.random() * teas.length)];
+        // 选品牌抽奶茶功能
+        function chooseBrand(element) {
+            setActive(element);
+            const milkTeaOptions = {
+                '喜茶': ['纤体瓶系列', '多肉桃李', '鸭喜香轻柠茶'],
+                '霸王茶姬': ['金乌扶摇', '扶摇起', '桂馥兰香'],
+                '奈雪の茶': ['霸气橙子', '草莓芝芝', '桃子乌龙茶']
+            };
+            let brands = Object.keys(milkTeaOptions);
+            let brand = prompt("请选择品牌：" + brands.join(', '));
+            if (brand && milkTeaOptions[brand]) {
+                let teas = milkTeaOptions[brand];
+                let randomTea = teas[Math.floor(Math.random() * teas.length)];
+                document.getElementById('result').innerHTML = `你选择了 ${brand}，随机抽取的奶茶是：${randomTea}`;
+            } else {
+                document.getElementById('result').innerHTML = "该品牌不存在，请重新选择。";
+            }
+        }
 
-            // 显示结果
-            document.getElementById('result').innerText = `今天的奶茶是：${randomBrand} 的 ${randomTea}`;
+        // 直接抽奶茶功能
+        function randomMilkTea(element) {
+            setActive(element);
+            const milkTeaOptions = {
+                '喜茶': ['纤体瓶系列', '多肉桃李', '鸭喜香轻柠茶'],
+                '霸王茶姬': ['金乌扶摇', '扶摇起', '桂馥兰香'],
+                '奈雪の茶': ['霸气橙子', '草莓芝芝', '桃子乌龙茶']
+            };
+            let brands = Object.keys(milkTeaOptions);
+            let randomBrand = brands[Math.floor(Math.random() * brands.length)];
+            let teas = milkTeaOptions[randomBrand];
+            let randomTea = teas[Math.floor(Math.random() * teas.length)];
+            document.getElementById('result').innerHTML = `随机抽取的奶茶是：${randomBrand} 的 ${randomTea}`;
         }
     </script>
 
